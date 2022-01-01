@@ -8,7 +8,7 @@
 // The second element would be a string indicating "perfect cut" if all the diamond's 
 // edges are pointy or "good cut" otherwise.
 
-function diamondCut (carats) {;
+function diamondCut (carats) {
     const diamond = Array(carats);
     const row = Array(carats).fill(0);
     console.log(row);
