@@ -13,7 +13,7 @@ const capitals = ['A', 'B', 'C', 'D','E','F']
 function validName (name) {
     let words = name.split(" ");
     let stringLength = words.length;
-    console.log(words, stringLength, words[0]);
+    // console.log(words, stringLength, words[0]);
 
     // escape clause: if name is under 2 words, returns false.
     if (stringLength < 2 || stringLength > 3) return false;
@@ -35,7 +35,7 @@ function validName (name) {
 
             // checks if last name is only one letter, returns false if it is or contains '.'
             if ((words[stringLength-1]).length == 1 || 
-                ((words[stringLength-1]).length == 2 && words[stringLength-1].includes('.'))) return false 
+                ((words[stringLength-1]).length == 2 && words[stringLength-1].includes('.'))) return false; 
             
             // checks if initials end with '.', returns false.
             if (words[element].length == 1 ||
