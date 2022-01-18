@@ -47,11 +47,11 @@ function caesarCipher (string, rotationFactor) {
     return criptedString.join("").toString();
 }
 
-function checkCipher (string, end) {
-    [1, 2, 3, 4, 5, 6, 7].forEach(caesarCipher(string, i));
+// function checkCipher (string, end) {
+//     [1, 2, 3, 4, 5, 6, 7].forEach(caesarCipher(string, i));
 
-    }
-}
+//     }
+// }
 
 
 
