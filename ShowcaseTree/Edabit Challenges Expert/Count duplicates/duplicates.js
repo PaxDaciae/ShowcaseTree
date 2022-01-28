@@ -3,20 +3,60 @@
 // Now you're looking to simplify the list by combining duplicate items,
 // and adding a count property to everything.
 
+const array1 = ["John","Peter","Markus","Ion"];
 
-function simplifyList(array) {
-    const finalList = [];
-    for (object in array) {
-        // console.log(object, array[object])
-        if (!finalList.some(array => array.name === finalList.name)) {
-            finalList.push(array[object]);
-            finalList[finalList.length - 1].count = 1;
-        } else {
-            finalList[object].count += 1;
-        }
-        console.log(finalList)
+// checks whether an element is even
+const even = (element) => element === "Ion";
+
+console.log(array1.some(even));
+// expected output: true
+
+
+const array = [
+    {name:"John", age:7},
+    {name:"Peter", age:8},
+    {name:"Markus", age: 40},
+    {name:"Ion", age: 50}   
+]
+const variable = (element) => element === "Ion";
+console.log(array.some(variable))
+
+function testAlgo(){
+    if (array.some((element) => element.name === "Ion")){
+        console.log("works");
+    } else {
+        console.log("no work");
     }
 }
+
+// function testAlgo(array) {
+//     console.log(array.some(variable));
+    // for (object in array) {
+    //     if (array.some(object => object.name === "Ion")){
+    //         console.log("works");
+    //     } else {
+    //         console.log("no work");
+    //     }
+    // }
+// }
+
+
+// function simplifyList(array) {
+//     const finalList = [];
+//     for (object in array) {
+//         // console.log(object, array[object])
+//         if (!finalList.some(array => array.name === finalList.name)) {
+//             console.log("object not in array")
+//             finalList.push(array[object]);
+//             console.log(finalList)
+//             // finalList[finalList.length - 1].count = 1;
+//         } else {
+//             console.log("object in array already")
+//             // finalList[object].count += 1;
+//         }
+//         console.log(finalList)
+//     }
+// }
 
 // Backup:
 // function simplifyList(array) {
