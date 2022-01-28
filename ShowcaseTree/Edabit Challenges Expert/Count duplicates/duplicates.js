@@ -3,31 +3,60 @@
 // Now you're looking to simplify the list by combining duplicate items,
 // and adding a count property to everything.
 
-const array1 = ["John","Peter","Markus","Ion"];
+// const array1 = ["John","Peter","Markus","Ion"];
 
-// checks whether an element is even
-const even = (element) => element === "Ion";
+// // checks whether an element is even
+// const even = (element) => element === "Ion";
 
-console.log(array1.some(even));
-// expected output: true
-
+// console.log(array1.some(even));
+// // expected output: true
 
 const array = [
-    {name:"John", age:7},
-    {name:"Peter", age:8},
-    {name:"Markus", age: 40},
-    {name:"Ion", age: 50}   
-]
-const variable = (element) => element === "Ion";
-console.log(array.some(variable))
+    { brand: "NARS", name: "Cosmetics Voyageur Pallete" },
+    { brand: "NARS", name: "Cosmetics Voyageur Pallete" },
+    { brand: "Urban Decay", name: "Naked Honey Pallete" },
+    { brand: "Stila", name: "Stay All Day Liquid Lipstick" },
+    { brand: "Stila", name: "Stay All Day Liquid Lipstick" },
+    { brand: "Stila", name: "Stay All Day Liquid Lipstick" }
+  ]
 
-function testAlgo(){
-    if (array.some((element) => element.name === "Ion")){
-        console.log("works");
-    } else {
-        console.log("no work");
+function simplifyList(array){
+    const shoppingList = []
+    for (element in array) {
+        var brand = array[element].brand
+        console.log(element) 
+        console.log(array[element])
+        console.log(brand)
+        const test = (element) => array[element].brand === shoppingList[element].brand
+        if (shoppingList.some(test)) {
+            // (element) => element.brand === element.brand)) {
+            console.log("contine")
+            console.log(shoppingList)
+
+        } else {
+            console.log("nu contine")
+            shoppingList.push(array[element])
+            console.log(shoppingList)
+        }
     }
 }
+
+// const array = [
+//     {name:"John", age:7},
+//     {name:"Peter", age:8},
+//     {name:"Markus", age: 40},
+//     {name:"Ion", age: 50}   
+// ]
+// const variable = (element) => element === "Ion";
+// console.log(array.some(variable))
+
+// function testAlgo(){
+//     if (array.some((element) => element.name === "Ion")){
+//         console.log("works");
+//     } else {
+//         console.log("no work");
+//     }
+// }
 
 // function testAlgo(array) {
 //     console.log(array.some(variable));
