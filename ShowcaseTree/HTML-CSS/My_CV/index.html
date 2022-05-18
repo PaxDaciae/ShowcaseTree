@@ -7,17 +7,28 @@
     </head>
 
     <!-- Aici o sa pun containerul pt animatie + dots -->
-    <header class="page-header center-all-page">
+    <header class="page-header center-all-page background-gradient">
+        <div class ="header-deco"></div>
         <div class="animation-context">
-            <div class="dot"></div>
+            <div id="spaceship-container">
+                <div id="spaceship"></div>
+                <!-- <div id="burst-12"></div> -->
+            </div>
+            <div class="dot dot-1-faster" style="animation-name: bubble-1-long; animation-duration:3s; width:20px; height:20px;""></div>
+            <br>
+            <div class="dot dot-1" style="animation-name: bubble-2-medium; animation-duration:5s; width:45px; height:45px;">
+            </div>
         </div>
         <div class="animation-context">
             <br>
-            <div class="dot"></div>
+            <div class="dot dot-1-faster" style="animation-name: bubble-1-long; animation-duration:3.5s; width:30px; height:30px;""></div>
+            <br>
+            <div class="dot dot-2" style="animation-name: bubble-2-medium; animation-duration:6s; width:45px; height:45px;"></div>
+            <div class="dot dot-1-faster" style="animation-name: bubble-1-long; animation-duration:3.3s; width:30px; height:30px;"></div>
         </div>
         <div class="animation-context">
             <br>
-            <div class="dot"></div>
+            <div class="dot dot-1" style="animation-name: bubble-3-short; animation-duration:7s; width:80px; height:80px;"></div>
         </div>
 
           <!-- Aici incepe codul pe bune -->
@@ -40,8 +51,6 @@
                 </div>
             </div>
         </section>
-
-        <hr id="section-line">
 
         <section class="all-screen experience-block center">
             <div class="grid-container">

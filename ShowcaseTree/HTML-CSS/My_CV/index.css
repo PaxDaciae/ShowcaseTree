@@ -7,24 +7,37 @@ body {
 .email-link {
     font-size: 15px;
 }
-.background-gradient {
+/* .background-gradient {
     background: linear-gradient(90deg, rgba(249,200,1,1) 0%, rgba(250,250,250,1) 10%, rgba(251,251,251,1) 90%, rgba(249,200,1,1) 100%);
-}
+} */
 
 .splash-text {
     font-size: 20px;
 }
 .page-header {
-    /* background-color:yellow; */
-    width:99vw;
+    /* position:relative; */
+    width:95vw;
+    height:40vh;
 }
 .header-text {
+    padding-top:20vh;
     font-size:45px;
     font-weight:700;
+    color:white
 }
 .header-div {
     margin: 20px;
     padding:20px; 
+}
+.header-deco {
+    background-color:rgb(1, 10, 51);
+    z-index:-11;
+    width: 98vw;
+    height: 40vh;
+    position:absolute;
+    border-top:10px rgba(249,200,1,1);
+    border-left:10px rgba(249,200,1,1)
+    
 }
 .center-all-page {
     /* margin: auto;
@@ -64,24 +77,84 @@ body {
     position:absolute;
     z-index: -10;
 }
+
+
+#spaceship {
+    position:relative;
+    height: 15px;
+    width: 40px;
+    background-color: #888888;
+}
+#spaceship:after,
+#spaceship:before{
+    background: red;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    text-align: center;
+  }
+#spaceship:before,
+#spaceship:after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 39px;
+    height: 20px;
+    width: 20px;
+    background: lightskyblue;
+  }
+#spaceship:before {
+    transform: rotate(60deg);
+    /* transform: skew(-45deg); */
+  }
+#spaceship:after {
+    transform: rotate(30deg);
+    /* transform: skew(-45deg); */
+  }
+
+
 .dot {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     background-color: rgba(249,200,1,1);
     border-radius: 50%;
     position: relative;
     /* z-index:-1; */
-    animation-name: bubble;
-    animation-duration: 4s;
     animation-iteration-count: infinite;
+
+}
+
+.dot-1 {
+    animation-duration: 4s;
+    animation-timing-function: cubic-bezier(0, 0.6, 0.85, 1);
+}
+.dot-1-faster {
+    animation-duration: 3.5s;
+    animation-timing-function: cubic-bezier(0, 0.7, 0.85, 1);
+}
+
+.dot-2 {
+    size-adjust:75%;
+    animation-duration: 3s;
     animation-timing-function: cubic-bezier(0, 0.6, 0.85, 1);
 }
 
-
-@keyframes bubble {
+@keyframes bubble-1-long {
     0% {left: -10%; opacity: 1;}
     /* 50% {left: 50%; opacity: 0.5;} */
-    100% {left: 90%; opacity: 0;}
+    100% {left: 90%; opacity: 0; background-color: rgba(255,119,0,1)}
+}
+
+@keyframes bubble-2-medium {
+    0% {left: -10%; opacity: 1; }
+    /* 50% {left: 50%; opacity: 0.5;} */
+    100% {left: 60%; opacity: 0; background-color: rgba(255,119,0,1)}
+}
+
+@keyframes bubble-3-short {
+    0% {left: -10%; opacity: 1; }
+    /* 50% {left: 50%; opacity: 0.5;} */
+    100% {left: 30%; opacity: 0; background-color: rgba(255,119,0,1)}
 }
 
 .experience-block {
