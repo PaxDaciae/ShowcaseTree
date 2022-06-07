@@ -176,21 +176,16 @@ full-screen-height {
 }
 
 .decor-block {
-    position: relative;
-    height:250px;
-    width: 1000px;
-    transform: rotate(35deg);
+    margin-top:35px;
     background-color:rgb(1, 10, 51);
+    clip-path: polygon(50% 0%, 100% 0%, 50% 100%, 0% 100%);
+    position: absolute;
+    float:left;
+    /* top: -14px; */
+    /* left: px; */
+    height: 25em;
+    width: 25em;
+    transform: rotateY(180deg);
     z-index: -1;
 
-}
-
-.decor-block::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    border-top: 250px solid white;
-    border-right: 250px solid red;
-    width: 0;
-}
 }
