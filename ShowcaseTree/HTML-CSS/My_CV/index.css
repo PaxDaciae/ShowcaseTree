@@ -5,6 +5,7 @@ body {
 }
 
 .email-link {
+    padding-top:5vh;
     font-size: 15px;
 }
 /* .background-gradient {
@@ -33,7 +34,7 @@ body {
     background-color:rgb(1, 10, 51);
     z-index:-11;
     width: 98vw;
-    height: 40vh;
+    height: 300px;
     position:absolute;
     border-top:10px rgba(249,200,1,1);
     border-left:10px rgba(249,200,1,1)
@@ -160,10 +161,16 @@ body {
 .experience-block {
     padding-top: 20vh;
     padding-bottom: 10vh;
+    width: 95vw;
+    align-content: center;
 }
 
 
-
+.invisible-container {
+    width:95vw;
+    height:45vh;
+    border: 1px black transparent;
+}
 .container {
     /* background-color:blue; */
     width:200px;
@@ -173,7 +180,7 @@ body {
     border-radius: 0px;
     /* display: inline-grid; */
     /* grid-auto-rows: 1fr;  */
-  }
+}
 
 .outline-container {
     /* background-color: red; */
@@ -193,7 +200,7 @@ body {
   } */
 
 
-  .grid-container {
+.grid-container {
     position: relative;
     /* background-color:blue; */
     display:inline-grid;

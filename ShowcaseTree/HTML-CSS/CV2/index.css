@@ -1,0 +1,196 @@
+.header-container {
+    height: 100vh;
+}
+
+.header-banner{
+    background-color:rgb(1, 10, 51);
+    z-index:-1;
+    width: 98vw;
+    height: 40vh;
+    text-align: center;
+    display: table-cell; 
+    vertical-align: middle;
+    position:relative;
+    /* border-top:10px rgba(249,200,1,1);
+    border-left:10px rgba(249,200,1,1) */
+}
+
+/*                                        BROKEN FOR NOW
+.header-gradient-container {
+    position:absolute;
+    background: rgb(1,10,51);
+    background: linear-gradient(180deg, rgba(1,10,51,1) 0%, rgba(255,255,255,0) 100%);
+    z-index:-1;
+    width: 98vw;
+    height:10vh; 
+} */
+
+
+.header-text {
+    /* margin:auto; */
+    font-size:45px;
+    font-weight:700;
+    color:white;
+    position: relative;
+    top: 30%;
+    text-shadow: -1px -1px 0 rgb(1, 10, 51),  
+    1px -1px 0 rgb(1, 10, 51),
+    -1px 1px 0 rgb(1, 10, 51),
+    1px 1px 0 rgb(1, 10, 51);    
+    z-index:1;
+}
+
+
+.animation-context {
+    position:absolute;
+    z-index:0;
+    width:95vw;
+}
+.dot {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(249,200,1,1);
+    border-radius: 50%;
+    position: relative;
+    /* z-index:-1; */
+    animation-iteration-count: infinite;
+
+}
+
+.dot-1 {
+    animation-duration: 4s;
+    animation-timing-function: cubic-bezier(0, 0.6, 0.85, 1);
+}
+.dot-1-faster {
+    animation-duration: 3.5s;
+    animation-timing-function: cubic-bezier(0, 0.7, 0.85, 1);
+}
+
+.dot-2 {
+    size-adjust:75%;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(0, 0.6, 0.85, 1);
+}
+
+@keyframes bubble-1-long {
+    0% {left: -10%; opacity: 1;}
+    /* 50% {left: 50%; opacity: 0.5;} */
+    100% {left: 90%; opacity: 0; background-color: rgba(255,119,0,1)}
+}
+
+@keyframes bubble-2-medium {
+    0% {left: -10%; opacity: 1; }
+    /* 50% {left: 50%; opacity: 0.5;} */
+    100% {left: 60%; opacity: 0; background-color: rgba(255,119,0,1)}
+}
+
+@keyframes bubble-3-short {
+    0% {left: -10%; opacity: 1; }
+    /* 50% {left: 50%; opacity: 0.5;} */
+    100% {left: 30%; opacity: 0; background-color: rgba(255,119,0,1)}
+}
+
+.email-contact {
+    padding-top: 5vh;
+    text-align:center;
+    font-size:12px;
+}
+
+body {
+    font-family: "Akshar", cursive;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.space-block {
+    padding-top: 20px;
+}
+
+.body-block {
+    background-color:rgb(1, 10, 51);
+    color:white;
+    
+}
+
+.headline {
+    font-size:40px;
+    font-weight:700;
+    color:white;
+}
+.centered-text {
+    text-align: center;
+}
+
+.centered-content {
+    align-content: center;
+}
+
+full-screen-height {
+   height: 60vh;
+}
+
+.experience-block {
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    width: 95vw;
+    align-content: center;
+}
+
+.grid-container {
+    position: relative;
+    /* background-color:blue; */
+    display:inline-grid;
+    /* grid-template-rows: auto auto auto; */
+    justify-content: center; 
+    align-content: center; 
+    gap:30px;
+}
+.grid-item {
+    text-align: center;
+    grid-row:1;
+}
+
+.logo-img {
+    height: 180px; /* let the text define the height (remove this if you want the iamge to define the size) */ /* get 100% height defined by the text */
+    width: auto; /* cover all the container width */
+    object-fit: cover;
+}
+
+.outline-container {
+    width:200px;
+    height:450px;
+    /* border: 1px solid black; */
+    border-radius:20px;
+    box-shadow: 2px 2px 10px darkgrey;
+}
+
+.breakdown-container-text {
+    text-align: left;
+    padding-left: 40px;
+}
+
+.basic-paragraph {
+    margin: auto;
+    width: 70vw;
+    text-align:center;
+}
+
+.decor-block {
+    position: relative;
+    height:250px;
+    width: 1000px;
+    transform: rotate(35deg);
+    background-color:rgb(1, 10, 51);
+    z-index: -1;
+
+}
+
+.decor-block::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    border-top: 250px solid white;
+    border-right: 250px solid red;
+    width: 0;
+}
+}
