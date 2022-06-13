@@ -1,0 +1,13 @@
+
+.unit-selector-container {
+    display: inline-flex;
+    align-items: center;
+    min-width: 500px;
+    min-height: 500px;
+    background-color: bisque;
+}
+
+.unit-selector {
+    flex: 1 1 200px;
+    background-color: black;
+}
