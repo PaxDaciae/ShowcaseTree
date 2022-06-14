@@ -17,7 +17,7 @@ const unit = {
 // const spaceMarineIntercessor = [6, 3, 3, 4, 4, 2, 2, 7, 3];
 
             // Here we have the statlines for units in array form, simplified placeholder names for testing//
-const a = [5, 3, 2, 4, 5, 1, 1, 7, 3];
+const a = [5, 3, 3, 4, 5, 1, 3, 7, 3];
 const b = [6, 3, 3, 4, 3, 2, 2, 7, 3];
     //c = [M,Ws,Bs, S, T,Wu, A,Ld, S];
 
@@ -45,30 +45,58 @@ function statLineTest(array1, array2){
     console.log(unit2)
 }
 
-            // This function performs a number of d6 rolls equivalent to the attacker's Attacks stat from their completed stat object, returns the values as an arrray//
+            // This function performs a number of d6 rolls equivalent to the attacker's Attacks stat from their completed stat object, returns the values as an arrray.//
 function rollBucketOutcome(unit) {
     const rollBucket = [];
-    const attackerObject = unitStatLineObject(unit)
+    const attackerObject = unitStatLineObject(unit);
     let numberAttacks = parseInt(attackerObject.attacks);
     for (i = 0; i<numberAttacks; i++) {
         rollBucket.push(diceRoll());
     }
-    // console.log("Zarurile sunt", ... rollBucket);
+    console.log("To hit rolls:", rollBucket);
     return(rollBucket);
     
 }
 
-            // This function calculates the number of successful hits based on the attacker's BS, its rolls, and the presence of cover. No cover = 0, cover = 1.//
-function hitCalculator (attacker, cover) {
+        // This function was added to allow for the values of the To Hit rolls to be preserved. Calculates the number of successful hits based on the attacker's BS, its rolls, and the presence of cover. No cover = 0, cover = 1.//
+function hitBucketOutcome (attacker, cover) {
     if (cover > 1) { cover = 1};
-    const attackerObject = unitStatLineObject(attacker);
+    const attackerObject = unitStatLineObject(unit);
     const rollBucket = rollBucketOutcome(attacker);
     const numberOfChecks = rollBucket.length;
+    const hitBucket = []
+    for (i = 0; i<numberOfChecks; i++) {
+        if ((rollBucket[i] > 1) && (rollBucket[i] >= (attackerObject.balisticSkill + cover))) hitBucket.push(diceRoll());}
+        // else {hitBucket.push(0)}
+    
+    console.log ("To damage rolls:", hitBucket);
+    return hitBucket;
+}
+            // ***Commented-out, see below*** This function calculates the number of successful hits based on the attacker's BS, its rolls, and the presence of cover. No cover = 0, cover = 1.// 
+
+            // Changed to use the hitBucketOutcome results instead //
+// function hitCalculator (attacker, cover) {
+//     if (cover > 1) { cover = 1};
+//     const attackerObject = unitStatLineObject(attacker);
+//     const rollBucket = rollBucketOutcome(attacker);
+//     const numberOfChecks = rollBucket.length;
+//     const finalHits = [];
+//     for (i = 0; i<=numberOfChecks; i++) {
+//         if (rollBucket[i] >= (attackerObject.balisticSkill + cover)) numberOfHits++;         
+//         }
+//     // console.log(cover);
+//     return numberOfHits;
+// }
+
+            // This function calculates the number of successful hits based on the the hitBucketOutcome results.// 
+function hitCalculator(attacker, cover) {
+    const attackerObject = unitStatLineObject(attacker);
+    const rollBucket = hitBucketOutcome(attacker);
+    const numberOfChecks = rollBucket.length;
     var numberOfHits = 0;
-    for (i = 0; i<=numberOfChecks; i++) {
-        if (rollBucket[i] >= (attackerObject.balisticSkill + cover)) numberOfHits++;         
-        }
-    // console.log(cover);
+    for (i = 0; i<=numberOfChecks; i++){
+        if (rollBucket[i] > 1 && rollBucket[i] >= (attackerObject.balisticSkill + cover)) numberOfHits++;
+    }
     return numberOfHits;
 }
 
