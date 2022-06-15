@@ -100,7 +100,6 @@ function toHit (attacker, cover, modelCount) {
 }
 
 function diceAlgo (attacker, cover, modelCount) {
-    const hitObject = {toHitDice: '', successfulHits:''};
     function toHit (attacker, cover, modelCount) {
         const toHitResult = {toHitDice: '', successfulHits:''};
         function rollHitDice(attacker, modelCount) {
@@ -134,20 +133,21 @@ function diceAlgo (attacker, cover, modelCount) {
         return toHitResult;
     }
 
-    const storage = toHit(attacker, cover, modelCount)
-    hitObject.toHitDice = storage.toHitDice;
-    hitObject.successfulHits = storage.successfulHits;
+    // const storage = toHit(attacker, cover, modelCount)
+    // const hitObject = {toHitDice: storage.toHitDice, successfulHits: storage.successfulHits};
+
+    // hitObject.toHitDice = storage.toHitDice;
+    // hitObject.successfulHits = storage.successfulHits;
+    const hitObject = toHit(attacker, cover, modelCount)
     console.log("Obiectul final este:", hitObject);
     
-    function toWound (attacker, target) {
-        const numberOfHits = hitObject.successfulHits;
-        function rollWoundDice(attacker, target) {
-            console.log(numberOfHits)
-            // return rollBucket(numberOfAttacks*modelCount);  
-        }
-        rollWoundDice(hitObject);
+    function toWound (hits) {
+        const woundObject = {toWoundDice: rollBucket(hits), successfulWounds: '10'};
+        return woundObject;
     }
-    console.log(toWound(hitObject, 1, 1))
+    
+    const woundObject = toWound(hitObject.successfulHits);
+    console.log(woundObject);
 }
 
 
