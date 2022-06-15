@@ -57,6 +57,15 @@ function rollBucketOutcome(unit) {
     return(rollBucket);
     
 }
+            // This function performs a given number of rolls //
+function rollBucket(rollNumber) {
+    const rollBucket = [];
+    for (i = 0; i<rollNumber; i++) {
+        rollBucket.push(diceRoll());
+    }
+    return(rollBucket);
+    
+}
 
         // This function was added to allow for the values of the To Hit rolls to be preserved. Calculates the number of successful hits based on the attacker's BS, its rolls, and the presence of cover. No cover = 0, cover = 1.//
 function hitBucketOutcome (attacker, cover) {
