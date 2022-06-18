@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="index.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenge 1</title>
-    <script src = "main.js"></script>
 </head>
 <body>
-    
+    <div class = "app-box">
+        <div class = "flex-container">
+            <div class = "flex-item unit-select attacker">
+                <script src = "main.js"></script>
+                <form>
+                    Select attacking unit faction:
+                    <select id="factionSelect">
+                      <option>Death Guard</option>
+                      <option>Space Marines</option>
+                    </select>
+                    <br><br>
+                    <input type="button" onclick="factionOption()" value="Select">
+                </form>
+                <p id="factionScreen"></p>
+                <form>
+                    Select attacking unit:
+                    <select id="unitSelect">
+                      <option>plagueMarine</option>
+                      <option>Intercessor</option>
+                    </select>
+                    <br><br>
+                    <input type="button" onclick="unitOption()" value="Select">
+                </form>
+                <p id="unitScreen"></p>
+            </div>
+           
+        </div>
+    </div>
+
 </body>
 </html>
 

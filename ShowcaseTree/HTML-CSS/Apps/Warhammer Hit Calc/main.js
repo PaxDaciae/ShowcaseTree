@@ -1,6 +1,10 @@
 
+const units = { 
+    plagueMarine: [5, 3, 3, 4, 5, 1, 1, 7, 3],
+    spaceMarineIntercessor: [6, 3, 3, 4, 3, 2, 2, 7, 3]
+}
 // Template for unit stat lists, to be completed using unit statlines in array form from below//
-const unit = {
+const statBlock = {
     movement: '',
     weaponSkill: '',
     balisticSkill: '',
@@ -24,14 +28,13 @@ const b = [6, 3, 3, 4, 3, 2, 2, 7, 3];
 // This function merges the template object with the unit's statline array //
 function unitStatLineObject(array) {
     let statLine = {};
-    Object.assign(statLine, unit)
+    Object.assign(statLine, statBlock)
     for (i=0; i<9; i++) {
         statLine[Object.keys(statLine)[i]]=array[i];
         // console.log (`${[Object.keys(statLine)[i]]} = ${array[i]}`)
     }
     return statLine;
-}
-     
+}   
 
 // Used to debug unitStatLineObject function; //
  function statLineTest(array1, array2){
@@ -46,7 +49,6 @@ function diceRoll() {
     let diceRoll = Math.floor(Math.random() * 6) + 1;
     return diceRoll;
 }
-
 
 // This function performs a given number of rolls and returns them as an array. //
 function rollBucket(rollNumber) {
@@ -66,135 +68,109 @@ function rollHitDice(attacker, modelCount) {
 }
 
 // toHit for testing purposes //
-function toHit (attacker, cover, modelCount) {
+function toHit (attacker, denseCover, modelCount) {
     const toHitResult = {toHitDice: '', successfulHits:''};
     function rollHitDice(attacker, modelCount) {
         const numberOfAttacks = unitStatLineObject(attacker).attacks;
-        console.log(rollBucket)
         return rollBucket(numberOfAttacks*modelCount);  
     }
 
     const hitDice = rollHitDice(attacker, modelCount).slice();
-    console.log(hitDice);
+    // console.log(hitDice);
 
-    function numberOfHits (attacker, cover, dice) {
-        if (cover > 1) { cover = 1};
+    function numberOfHits (attacker, denseCover, dice) {
+        if (denseCover > 1) { denseCover = 1};
         const attackerObject = unitStatLineObject(attacker);
         const rolls = dice;
         var hitBucket = 0;
         // console.log("To-Hit:", rolls);
         for (elem in rolls) {
-            console.log("Zarul to hit:", rolls[elem]);
-            if (rolls[elem] >= (attackerObject.balisticSkill + cover)) {
+            if (rolls[elem] >= (attackerObject.balisticSkill + denseCover)) {
                 hitBucket++;
-                console.log ('hit')
             } 
-            continue
+            // continue
         }
         return(hitBucket);
     }
-    const successfulHits = numberOfHits(attacker, cover, hitDice);
+    const successfulHits = numberOfHits(attacker, denseCover, hitDice);
     toHitResult.toHitDice = hitDice;
     toHitResult.successfulHits = successfulHits;
+    console.log(toHitResult)
     return toHitResult;
 }
 
-function diceAlgo (attacker, cover, modelCount) {
-    function toHit (attacker, cover, modelCount) {
-        const toHitResult = {toHitDice: '', successfulHits:''};
-        function rollHitDice(attacker, modelCount) {
-            const numberOfAttacks = unitStatLineObject(attacker).attacks;
-            console.log(rollBucket)
-            return rollBucket(numberOfAttacks*modelCount);  
-        }
-    
-        const hitDice = rollHitDice(attacker, modelCount).slice();
-        console.log(hitDice);
-    
-        function numberOfHits (attacker, cover, dice) {
-            if (cover > 1) { cover = 1};
-            const attackerObject = unitStatLineObject(attacker);
-            const rolls = dice;
-            var hitBucket = 0;
-            // console.log("To-Hit:", rolls);
-            for (elem in rolls) {
-                console.log("Zarul to hit:", rolls[elem]);
-                if (rolls[elem] >= (attackerObject.balisticSkill + cover)) {
-                    hitBucket++;
-                } 
-                continue
-            }
-            return(hitBucket);
-        }
-        const successfulHits = numberOfHits(attacker, cover, hitDice);
-        toHitResult.toHitDice = hitDice;
-        toHitResult.successfulHits = successfulHits;
-        console.log(toHitResult)
-        return toHitResult;
-    }
-
-    // const storage = toHit(attacker, cover, modelCount)
-    // const hitObject = {toHitDice: storage.toHitDice, successfulHits: storage.successfulHits};
-
-    // hitObject.toHitDice = storage.toHitDice;
-    // hitObject.successfulHits = storage.successfulHits;
-    const hitObject = toHit(attacker, cover, modelCount)
-    console.log("Obiectul final este:", hitObject);
-    
-    function toWound (hits) {
-        const woundObject = {toWoundDice: rollBucket(hits), successfulWounds: '10'};
-        return woundObject;
-    }
-    
-    const woundObject = toWound(hitObject.successfulHits);
-    console.log(woundObject);
-}
-
-
-
-
-
-// This function calculates the number of successful hits based on the attacker's BS, its rolls, and the presence of cover. No cover = 0, cover = 1.//
-
-// This function calculates the number of hits per model//
-
-function numberOfHits (unit, cover) {
-    if (cover > 1) { cover = 1};
-    const attackerObject = unitStatLineObject(unit);
-    const rolls = rollBucket(attackerObject.attacks);
-    var hitBucket = 0;
-    // console.log("To-Hit:", rolls);
-    for (elem in rolls) {
-        // console.log("Zarul to hit:", rolls[elem]);
-        if (rolls[elem] >= (attackerObject.balisticSkill + cover)) {
-            hitBucket++;
-            // console.log('hit');}
-        }
-    }
-    return(hitBucket);
-}
-
-// This function expands the numberOfHit functions for the whole squad //
-function hitDiceWholeUnit(unit, cover, modelCount) {
-    // const hitBucket = numberOfHits(unit, cover);
-    var finalHits = 0;
-    var i=0;
-    while (i < modelCount) {
-        finalHits += parseInt(numberOfHits(unit, cover));
-        i++
-    }
-    return finalHits;
-}
-
-function successfulHitsWholeUnit (attacker, cover, modelCount) {
+function toWound (attacker, target, hits) {
     const attackerObject = unitStatLineObject(attacker);
-    const rollBucket = hitDiceWholeUnit(attacker, cover, modelCount);
-    console.log(attackerObject.balisticSkill, rollBucket)
-    const numberOfChecks = rollBucket.length;
-    const hitBucket = 0;
-    for (i = 0; i<numberOfChecks; i++) {
-        if (rollBucket[i] >= (attackerObject.balisticSkill + cover)) hitBucket++}    
-    console.log ("Successful damage rolls:", hitBucket);
-    return hitBucket;
+    const strength = parseInt(attackerObject.strengh);
+    const targetObject = unitStatLineObject(target);
+    const toughness = parseInt(targetObject.toughness);
+    const woundObject = {toWoundDice: rollBucket(hits), successfulWounds: 0};
+    const counter = woundObject.toWoundDice.length;
+    // console.log(woundObject.toWoundDice, counter)
+    if (woundObject.toWoundDice.length < 1) {
+        woundObject.successfulWounds = 0;
+        return woundObject;}
+
+    if ((2*strength) < toughness) {
+        console.log("2S<T");
+        for (i = 0; i < counter; i++) {
+            // console.log(`Zarul ${i} este ${woundObject.toWoundDice[i]}`)
+            if (woundObject.toWoundDice[i] >= 2) woundObject.successfulWounds ++;
+        }
+    }
+    else if (strength < toughness) {
+        for (i = 0; i < counter; i++) {
+            // console.log(`Zarul ${i} este ${woundObject.toWoundDice[i]}`)
+            if (woundObject.toWoundDice[i] >= 3) woundObject.successfulWounds ++;
+        }
+        console.log("S<T")
+    }
+    else if (strength == toughness) {
+        for (i = 0; i < counter; i++) {
+            // console.log(`Zarul ${i} este ${woundObject.toWoundDice[i]}`)
+            if (woundObject.toWoundDice[i] >= 4) woundObject.successfulWounds ++;
+        }
+        console.log("S=T");
+    }
+    else if ((strength > toughness) && !(strength > toughness*2)){
+        for (i = 0; i < counter; i++) {
+            // console.log(`Zarul ${i} este ${woundObject.toWoundDice[i]}`)
+            if (woundObject.toWoundDice[i] >= 5) woundObject.successfulWounds ++;
+        }
+        console.log("S>T")
+    }
+    else if (strength > (2*toughness)) {
+        for (i = 0; i < counter; i++) {
+            // console.log(`Zarul ${i} este ${woundObject.toWoundDice[i]}`)
+            if (woundObject.toWoundDice[i] >= 6) toWoundDice.successfulWounds ++;
+        }
+        console.log("S>2T")
+    }
+    return woundObject;
+
 }
 
+// function toSave (target, wounds)
+
+// Runs the whole thing -- better description needed //
+// function diceAlgo (attacker, target, denseCover, cover, modelCount) {
+//     const hitObject = toHit(attacker, cover, modelCount)
+//     const woundObject = toWound(attacker, target, hitObject.successfulHits);
+// }
+
+
+function factionOption() {
+    let faction = document.getElementById("factionSelect").value;
+    function pick(faction) {
+      return obj[String(faction)];
+    }
+    document.getElementById("factionScreen").innerHTML = console.log(pick(faction));
+  }
+
+  function unitOption() {
+    let unit = document.getElementById("unitSelect").value;
+    function pick(unit) {
+      return units[String(unit)];
+    }
+    document.getElementById("unitScreen").innerHTML = pick(unit);
+  }

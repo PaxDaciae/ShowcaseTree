@@ -1,0 +1,27 @@
+
+body {
+    text-align: center;
+}
+
+#main { 
+    background: rgb(170, 170, 170);
+    border-radius: 25px;
+
+}
+
+#title {
+    padding-top:30px;
+    padding-bottom:5px;
+}
+
+#img-div {
+    padding:30px;
+    background-color:white;
+}
+
+#image {
+    display:block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+}
